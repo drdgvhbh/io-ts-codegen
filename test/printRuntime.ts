@@ -12,9 +12,9 @@ describe('printRuntime', () => {
     assert.strictEqual(
       t.printRuntime(declaration),
       `const Foo = t.keyof({
-  a: null,
-  b: null
-})`
+  a: 'a',
+  b: 'b'
+} as const)`
     )
   })
 
@@ -23,9 +23,9 @@ describe('printRuntime', () => {
     assert.strictEqual(
       t.printRuntime(declaration),
       `const Foo = t.keyof({
-  '<': null,
-  '>': null
-})`
+  '<': '<',
+  '>': '>'
+} as const)`
     )
   })
 
@@ -34,9 +34,9 @@ describe('printRuntime', () => {
     assert.strictEqual(
       t.printRuntime(declaration),
       `const Foo = t.keyof({
-  '01test': null,
-  '1': null
-})`
+  '01test': '01test',
+  '1': '1'
+} as const)`
     )
   })
 
