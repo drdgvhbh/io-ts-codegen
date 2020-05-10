@@ -720,6 +720,7 @@ function printRuntimeTypesCombinator(
   s += `\n${indent(i)}]`
   s = addRuntimeName(s, combinatorName)
   s += ')'
+
   return s
 }
 
@@ -743,11 +744,13 @@ function printRuntimeIntersectionCombinator(c: IntersectionCombinator, i: number
 
 function printRuntimeKeyofCombinator(c: KeyofCombinator, i: number): string {
   const indentation = indent(i + 1)
+
   let s = `t.keyof({\n`
-  s += c.values.map(v => `${indentation}${escapePropertyKey(v)}: null`).join(',\n')
-  s += `\n${indent(i)}}`
+  s += c.values.map(v => `${indentation}${escapePropertyKey(v)}: '${escapePropertyKey(v)}'`).join(',\n')
+  s += `\n${indent(i)}} as const`
   s = addRuntimeName(s, c.name)
   s += ')'
+
   return s
 }
 
